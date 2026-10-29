@@ -140,7 +140,7 @@ export default function LandingPage() {
             </p>
             <div className="flex flex-col gap-4 sm:flex-row">
               <Link
-                href="/signup"
+                href="/contact"
                 className="inline-flex items-center justify-center gap-2 rounded-sm bg-[#0066FF] px-8 py-3.5 text-base font-semibold text-white hover:bg-blue-700 transition-colors"
               >
                 Get a Quote
