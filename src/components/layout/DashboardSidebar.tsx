@@ -17,6 +17,7 @@ import { useAuth } from "@/context/AuthContext";
 import { logOut } from "@/lib/firebase/auth";
 import { BrandLogo } from "@/components/layout/BrandLogo";
 import { SUPPORT_EMAIL } from "@/lib/constants/support";
+import { CopyEmailButton } from "@/components/analytics/GoogleAnalytics";
 
 const ACCOUNT_MANAGER = {
   name: "Song Joon Ha",
@@ -94,13 +95,13 @@ export function DashboardSidebar() {
                 </p>
               </div>
             </div>
-            <a
-              href={`mailto:${ACCOUNT_MANAGER.email}`}
+            <CopyEmailButton
+              location="dashboard_sidebar"
               className="flex w-full items-center justify-center gap-1 rounded-sm border border-[#E5E7EB] px-2 py-1.5 text-xs text-[#6B7280] hover:bg-white"
             >
               <Mail className="h-3 w-3" />
               {ACCOUNT_MANAGER.email}
-            </a>
+            </CopyEmailButton>
           </div>
         ) : (
           <div className="rounded-sm bg-[#F7F9FC] p-3 text-xs text-[#6B7280]">

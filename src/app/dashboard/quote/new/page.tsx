@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { createQuote, updateQuote, submitQuote, uploadQuoteFile } from "@/lib/api/client";
+import { trackQuoteSubmit } from "@/components/analytics/GoogleAnalytics";
 import { validateFile, formatFileSize } from "@/lib/utils/files";
 import { PROCESS_LABELS } from "@/types";
 import type { ManufacturingProcess, QuoteConfiguration, QualityRequirements } from "@/types";
@@ -167,6 +168,7 @@ export default function NewQuotePage() {
       });
 
       await submitQuote(qId);
+      trackQuoteSubmit({ process: selectedProcess, file_count: fileResults.length });
       setSubmitted(true);
     } catch (err) {
       console.error("[handleSubmit] error:", err);

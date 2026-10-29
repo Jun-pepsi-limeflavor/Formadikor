@@ -6,7 +6,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail, Phone, Clock, CheckCircle, AlertCircle, Upload, X, UserPlus } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
-import { SUPPORT_EMAIL, SUPPORT_PHONE_US, SUPPORT_PHONE_US_TEL } from "@/lib/constants/support";
+import { CopyEmailButton, trackContactSubmit } from "@/components/analytics/GoogleAnalytics";
+import { SUPPORT_PHONE_US, SUPPORT_PHONE_US_TEL } from "@/lib/constants/support";
 import { contactInquirySchema, type ContactInquiryInput } from "@/lib/schemas/contact";
 import { submitContactInquiry, uploadContactFile } from "@/lib/api/client";
 import { validateFile, formatFileSize } from "@/lib/utils/files";
@@ -78,6 +79,7 @@ export default function ContactPage() {
         }
       }
 
+      trackContactSubmit();
       setSubmitted(true);
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : "Failed to send message.");
@@ -120,12 +122,10 @@ export default function ContactPage() {
                     <Mail className="h-5 w-5 text-[#0066FF] mt-0.5" />
                     <div>
                       <p className="text-sm font-medium text-[#1A1A2E]">Email</p>
-                      <a
-                        href={`mailto:${SUPPORT_EMAIL}`}
+                      <CopyEmailButton
+                        location="contact_page"
                         className="text-sm text-[#6B7280] hover:text-[#0066FF]"
-                      >
-                        {SUPPORT_EMAIL}
-                      </a>
+                      />
                     </div>
                   </div>
                   <div className="flex items-start gap-3">

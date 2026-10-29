@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { signUp } from "@/lib/firebase/auth";
+import { trackSignUp } from "@/components/analytics/GoogleAnalytics";
 import { Eye, EyeOff, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 
@@ -70,6 +71,7 @@ export default function SignupPage() {
         jobTitle: data.jobTitle,
         marketingOptIn: data.marketingOptIn ?? false,
       });
+      trackSignUp("email");
       router.push("/dashboard");
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "Signup failed. Please try again.";
