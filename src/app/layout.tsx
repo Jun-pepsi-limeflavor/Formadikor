@@ -46,6 +46,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${inter.variable} ${plusJakartaSans.variable} ${cormorantGaramond.variable}`}
     >
       <body className="min-h-full font-sans">

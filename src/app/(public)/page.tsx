@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { HeroSlideshow } from "@/components/public/HeroSlideshow";
-import { SUPPORT_EMAIL } from "@/lib/constants/support";
+import { CopyEmailButton } from "@/components/analytics/GoogleAnalytics";
 
 const STATS = [
   { value: "120+", label: "Korean Manufacturing Partners" },
@@ -140,7 +140,7 @@ export default function LandingPage() {
             </p>
             <div className="flex flex-col gap-4 sm:flex-row">
               <Link
-                href="/signup"
+                href="/contact"
                 className="inline-flex items-center justify-center gap-2 rounded-sm bg-[#0066FF] px-8 py-3.5 text-base font-semibold text-white hover:bg-blue-700 transition-colors"
               >
                 Get a Quote
@@ -306,9 +306,7 @@ export default function LandingPage() {
           </Link>
           <p className="mt-4 text-sm text-blue-200">
             Or speak with an account manager:{" "}
-            <a href={`mailto:${SUPPORT_EMAIL}`} className="underline">
-              {SUPPORT_EMAIL}
-            </a>
+            <CopyEmailButton location="home_cta" className="underline" />
           </p>
         </div>
       </section>
